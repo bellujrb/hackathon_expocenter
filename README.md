@@ -12,6 +12,9 @@
 
 ---
 
+## Dashboard
+https://vivaconnect.netlify.app/
+
 ## 🌐 Introduction
 
 Loyalty club application for the expo center north shopping mall, having a cashback token blockchain. Getting audience mapping insights on the dashboard
