@@ -15,6 +15,9 @@
 ## Dashboard
 https://vivaconnect.netlify.app/
 
+## Api AWS
+http://3.14.29.134:8080/swagger/index.html
+
 ## 🌐 Introduction
 
 Loyalty club application for the expo center north shopping mall, having a cashback token blockchain. Getting audience mapping insights on the dashboard
