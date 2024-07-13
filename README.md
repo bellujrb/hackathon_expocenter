@@ -2,7 +2,7 @@
 
 ---
 
-# NewZero: The tokenization of the cashback
+# VivaConnect: The tokenization of the cashback
 
 > _TEAM NewZero: Hackathon Expo Center Norte
 
