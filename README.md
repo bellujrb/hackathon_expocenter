@@ -109,8 +109,15 @@ hackathon_expocenter
 
 ## 🛠 Tech Stack (Backend)
 
-### Language and External Packages (Backend Game)
-- Golang
+### Language and External Packages (Backend)
+- Go
+- Gin Tonic
+- Gin Swagger and Swaggo
+- HTTP
+- Logger
+
+### Architecture (Backend)
+- MVC
 
 ---
 
