@@ -1,0 +1,362 @@
+definitions:
+  db.Marketplace:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      img:
+        type: string
+      product:
+        type: string
+      value:
+        type: integer
+    type: object
+  db.OpeningHours:
+    properties:
+      friday:
+        type: string
+      monday:
+        type: string
+      saturday:
+        type: string
+      sunday:
+        type: string
+      thursday:
+        type: string
+      tuesday:
+        type: string
+      wednesday:
+        type: string
+    type: object
+  db.Store:
+    properties:
+      address:
+        type: string
+      buying:
+        type: integer
+      cashBacksUse:
+        type: integer
+      cashback:
+        type: number
+      category:
+        type: string
+      city:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      openingHours:
+        $ref: '#/definitions/db.OpeningHours'
+      phone:
+        type: string
+      state:
+        type: string
+      storage:
+        type: string
+      website:
+        type: string
+      zipCode:
+        type: string
+    type: object
+  interfaces.MktInput:
+    properties:
+      description:
+        type: string
+      img:
+        type: string
+      product:
+        type: string
+      value:
+        type: integer
+    type: object
+  interfaces.Purchase:
+    properties:
+      email:
+        type: string
+      storage:
+        type: string
+      value:
+        type: number
+    type: object
+  interfaces.StorageBuying:
+    properties:
+      buying:
+        type: integer
+      id:
+        type: string
+    type: object
+  interfaces.StorageCashBack:
+    properties:
+      cashback:
+        type: number
+      id:
+        type: string
+    type: object
+  interfaces.StorageUse:
+    properties:
+      buying:
+        type: integer
+      id:
+        type: string
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a server for app.
+  title: Viva
+  version: "1.0"
+paths:
+  /api/all-item:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve Item Event
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of Item Event
+          schema:
+            $ref: '#/definitions/db.Marketplace'
+      summary: Retrieve Item Control
+      tags:
+      - Mkt
+  /api/calc-cashback:
+    post:
+      consumes:
+      - application/json
+      description: Calculation Cashback Total
+      parameters:
+      - description: For add new cashbacks in wallet to consumer
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/interfaces.Purchase'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Used Create
+          schema:
+            type: string
+      summary: Calculation Cashback Total
+      tags:
+      - Storage
+  /api/mkt:
+    post:
+      consumes:
+      - application/json
+      description: Create New Item For marketPlace
+      parameters:
+      - description: Data for create new Item
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/interfaces.MktInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Return for creat item
+          schema:
+            $ref: '#/definitions/db.Marketplace'
+      summary: Create New Item For marketPlace
+      tags:
+      - Mkt
+  /api/mkt/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve an Item by its ID
+      parameters:
+      - description: Item ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Item Details
+          schema:
+            $ref: '#/definitions/db.Marketplace'
+      summary: Retrieve Item by ID
+      tags:
+      - Mkt
+  /api/modify-cashback:
+    put:
+      consumes:
+      - application/json
+      description: Create new cashback
+      parameters:
+      - description: 'Data for modify the cashback '
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/interfaces.StorageCashBack'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Cashback Create
+          schema:
+            type: string
+      summary: Create cashback
+      tags:
+      - Storage
+  /api/modify-pushed:
+    put:
+      consumes:
+      - application/json
+      description: Create new Pushed
+      parameters:
+      - description: 'Data for modify the pushed '
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/interfaces.StorageBuying'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Pushed Create
+          schema:
+            type: string
+      summary: Create Pushed
+      tags:
+      - Storage
+  /api/modify-use:
+    put:
+      consumes:
+      - application/json
+      description: Create new CashBacksUse
+      parameters:
+      - description: 'Data for modify the Used '
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/interfaces.StorageUse'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Used Create
+          schema:
+            type: string
+      summary: CashBacksUse
+      tags:
+      - Storage
+  /api/remove-cashback:
+    post:
+      consumes:
+      - application/json
+      description: Remove Cashback Total
+      parameters:
+      - description: For add new cashbacks in wallet to consumer
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/interfaces.Purchase'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Used Create
+          schema:
+            type: string
+      summary: Remove Cashback Total
+      tags:
+      - Storage
+  /api/storage/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve an storage by its ID
+      parameters:
+      - description: Storage ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Storage Details
+          schema:
+            $ref: '#/definitions/db.Store'
+      summary: Retrieve Storage by ID
+      tags:
+      - Storage
+  /api/storages:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve all storage
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of All Storage
+          schema:
+            items:
+              $ref: '#/definitions/db.Store'
+            type: array
+      summary: Retrieve All Storage
+      tags:
+      - Storage
+  /api/test-token:
+    post:
+      consumes:
+      - application/json
+      description: Cria um toke para auth do usuario
+      parameters:
+      - default: Bearer <token>
+        description: Token de autenticação
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'token make:'
+          schema:
+            type: string
+      summary: Test Token
+      tags:
+      - Auth
+  /token:
+    get:
+      consumes:
+      - application/json
+      description: Cria um toke para auth do usuario
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'token make:'
+          schema:
+            type: string
+      summary: Criar token de auth
+      tags:
+      - Auth
+securityDefinitions:
+  BasicAuth:
+    type: basic
+swagger: "2.0"
